@@ -1,6 +1,8 @@
 package com.example;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -48,10 +50,9 @@ public class LionTest {
 
     @Test
     public void testGetExceptionForCreateLion() {
-        try {
-            Lion lion = new Lion("Сам", feline);
-        } catch (Exception e){
-            assertEquals("Используйте допустимые значения пола животного - Самец или Самка", e.getMessage());
-        }
+        Exception exception = assertThrows("Ожидаемый Exception не произошел.",
+                Exception.class, () -> new Lion("Сам", feline));
+        assertEquals("Текст Exception отличается от ожидаемого.",
+                "Используйте допустимые значения пола животного - Самец или Самка", exception.getMessage());
     }
 }

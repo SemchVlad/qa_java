@@ -23,7 +23,7 @@ public class FelineTest {
     }
 
     @Test
-    public void getKittens() {
+    public void testGetKittens() {
         Feline feline = new Feline();
         int actual = feline.getKittens();
         assertEquals(1, actual);
